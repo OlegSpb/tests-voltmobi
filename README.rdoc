@@ -1,28 +1,17 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 3.2.1
 
-Things you may want to cover:
+* SQLite
 
-* Ruby version
+* Админ и первый юзер создаются из <tt>rake db:seed</tt>.
 
-* System dependencies
+* Заполнить БД тестовыми данными: <tt>rake populate:all</tt>.
 
-* Configuration
+* Деплой через capistrano.
 
-* Database creation
+* Деплой к себе сделан только как Staging.
 
-* Database initialization
+* Код покрыт функциональными тестами. Делал их впервые, поэтому зачитался документации.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+{<img src="https://travis-ci.org/OlegSpb/tests-voltmobi.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/OlegSpb/tests-voltmobi]
