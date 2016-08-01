@@ -1,0 +1,4 @@
+h1 All tasks
+
+- @tasks.each do |task|
+  = render partial: 'web/account/tasks/row', locals: { task: task, readonly: true }

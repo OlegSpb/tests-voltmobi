@@ -1,0 +1,14 @@
+= simple_form_for @task,
+                  url: @task.new_record? ? account_tasks_path : account_task_path,
+                  method: @task.new_record? ? :post : :patch do |f|
+  = f.input :name
+  = f.input :description, as: :text, input_html: { cols: 5, rows: 10 }
+  - if is_admin?
+    = f.input :user_id,
+                      collection: User.select(:id, :email).where(role: 'user'),
+                      label_method: :email,
+                      value_method: :id,
+                      label: "Assign to user",
+                      include_blank: true
+  = f.button :submit, class: 'btn btn-primary' do
+    = @task.new_record? ? "Create" : "Save"

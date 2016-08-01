@@ -1,0 +1,29 @@
+- css_class = task.started? ? 'warning' : task.finished? ? 'success' : 'danger'
+- readonly ||= false
+- container_id = "task-#{task.id}"
+div class="panel panel-#{css_class}" id="#{container_id}"
+  div class="panel-heading"
+    = "##{task.id} - #{task.name}"
+    span class="pull-right"
+      span class="label label-#{css_class}"
+        = task.state
+  div class="panel-body"
+    = task.description
+    - unless readonly
+      p
+        div class="btn-group" role="group" data-url="#{update_state_account_task_path(task)}" data-method="patch" data-container="##{container_id}"
+          button type="button" class="btn btn-#{css_class} #{"active" if task.new? } change-task-status-btn" data-params="to=restart"
+            | New
+          button type="button" class="btn btn-#{css_class} #{"active" if task.started? } change-task-status-btn" data-params="to=start"
+            | Start
+          button type="button" class="btn btn-#{css_class} #{"active" if task.finished? } change-task-status-btn" data-params="to=done"
+            | Complete
+      p
+        a href="#{account_task_path(task)}" class="btn btn-primary" Show task
+        a href="#{edit_account_task_path(task)}" class="btn btn-info" Edit task
+        button class="btn btn-danger delete-something-btn" data-url="#{account_task_path(task)}" data-method="delete" data-remote="true" data-container="##{container_id}" Delete task
+  div class="panel-footer"
+    = task.created_at
+    - if readonly || is_admin?
+      span class="pull-right"
+        = task.user.email

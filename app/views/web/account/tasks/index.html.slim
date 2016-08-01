@@ -1,0 +1,14 @@
+div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"
+  div class="panel panel-default"
+    div class="panel-heading" role="tab" id="headingOne"
+      h4 class="panel-title"
+        button class="btn btn-xs btn-primary" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+          span class="glyphicon glyphicon-plus"
+          | Add task
+    div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
+      div class="panel-body"
+        - @task = Task.new
+        = render partial: 'form'
+
+- @tasks.each do |task|
+  = render partial: 'row', locals: { task: task }

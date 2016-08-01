@@ -1,0 +1,32 @@
+a href="#{account_tasks_path}" class="btn btn-xs btn-primary" All tasks
+
+div class="page-header"
+  h2 Task ##{@task.id}
+
+
+div class="row"
+  div class="col-xs-12"
+    h4 class="media-heading" #{@task.name}
+    p #{@task.description}
+    p #{@task.created_at.strftime '%F %T'}
+    - if is_admin?
+      p
+        ' Assigned to:
+        a href="#" class="link" #{@task.user.email}
+    p
+      = link_to edit_account_task_path(@task), class: 'btn btn-default' do
+        | Edit task
+
+
+div class="row"
+  div class="col-xs-12"
+    h3 Attachments
+    = render 'web/account/task/attachments/form'
+  - @attachments.each do |attachment|
+    div class="col-md-3 col-xs-6 attachment"
+      a href="#{attachment.file.url}" class="thumbnail" target="_blank"
+        img src="#{attachment.file.url(:thumb) || image_path('file.png') }"
+      div class="caption"
+        p
+          a href="#{attachment.file.url}" class="btn btn-default btn-sm" role="button" target="_blank"
+            span class="glyphicon glyphicon-download-alt"

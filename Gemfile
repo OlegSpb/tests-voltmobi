@@ -27,10 +27,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'slim'
+gem 'simple_form'
+
+gem 'bootstrap-sass'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -38,3 +43,38 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+
+group :development do
+  gem 'quiet_assets'
+
+  gem 'ruby-prof'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+
+  gem 'capistrano-scm-gitcopy', '0.0.8'
+
+  gem 'capistrano3-unicorn'
+end
+
+
+gem 'state_machines-activerecord'
+
+gem 'faker'
+gem 'factory_girl_rails'
+gem 'simplecov', :require => false, :group => :test
+
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+gem 'fastimage'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-activemodel-mocks'
+end

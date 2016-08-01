@@ -1,0 +1,11 @@
+- @attachment ||= @task.attachments.build
+div class="row"
+  div class="col-lg-6"
+    div class="panel panel-default"
+      div class="panel-body"
+        = simple_form_for @attachment, url: account_task_attachments_path(@task), method: :post do |f|
+          = f.input :file, wrapper: :vertical_file_input, label: false, errors: true do
+            div class="input-group"
+              = f.input_field :file, class: 'form-control'
+              span class="input-group-btn"
+                = f.button :submit, 'Upload!', class: 'btn btn-primary sadasd'

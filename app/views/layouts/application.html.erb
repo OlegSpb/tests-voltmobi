@@ -8,7 +8,56 @@
 </head>
 <body>
 
-<%= yield %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<%= root_path %>">All tasks</a></li>
+
+        <% if user_signed_in? %>
+            <li><a href="<%= account_tasks_path %>">Account tasks</a></li>
+
+            <li><p class="navbar-text"><%= "#{current_user.email} as #{current_user.role}" %></p></li>
+            <li><%= link_to account_session_path, remote: true, method: :delete  do %>
+                <span class="glyphicon glyphicon-log-out"></span> Sign out</li>
+            <% end %>
+        <% else %>
+            <li><%= link_to new_account_session_path do %>
+                  <span class="glyphicon glyphicon-user"></span> Sign in
+              <% end %></li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+      <% flash.keys.each do |key| %>
+          <div class="alert alert-danger alert-<%= key %> alert-dismissible" role="alert">
+            <%= flash[key] %>
+          </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

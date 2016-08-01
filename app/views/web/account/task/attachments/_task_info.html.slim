@@ -1,0 +1,9 @@
+div class="page-header"
+  h2 Task ##{@task.id}
+
+div class="row"
+  div class="col-xs-12"
+    h4 class="media-heading" #{@task.name}
+    p
+      = link_to account_task_path(@task), class: 'btn btn-default' do
+        | Back to task
