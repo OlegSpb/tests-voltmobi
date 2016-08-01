@@ -21,7 +21,7 @@ namespace :populate do
   task :attachments => :environment do
     tasks = Task.all.order('RANDOM()')
 
-    if users.size > 0
+    if tasks.size > 0
       rand(20).times do
         FactoryGirl.create(:task_attachment, task: tasks[rand(tasks.size)])
       end
